@@ -10,25 +10,51 @@ file_data = get_file_data("Day1Input.txt")
 
 # Part 1
 
-Split = []
-List1 = []
-List2 = []
-Distance = 0
-for x in file_data:
-    item1 = x.split("   ")
-    Split.append(item1)
+splits = []
+list1 = []
+list2 = []
+distance = 0
 
-for x in Split:
-    List1.append(x[0])
-    List2.append(x[1])
+def list_splitting(file_data):
 
-List1.sort()
-List2.sort()
+    # splits file_data into pairs of numbers one and two
+    for data in file_data:
+        item1 = data.split("   ")
+        splits.append(item1)
+
+    # separates numbers one and two into their respective arrays
+    for element in splits:
+        list1.append(element[0])
+        list2.append(element[1])
+
+    list1.sort()
+    list2.sort()
+
+list_splitting(file_data)
+
+for i in range(len(list1)):
+    distance += (abs(int(list1[i]) - int(list2[i])))
 
 
-for i in range(len(List1)):
-    Distance += (abs(int(List1[i]) - int(List2[i])))
-
-print(Distance)
+print(distance)
 
 # Part 2
+
+similarity_score = 0
+
+for x in list1:
+
+        count = 0
+        num = int(x)
+
+        for z in list2:
+            if x == z:
+                count+=1
+
+        similarity_score += num * count
+
+print(similarity_score)
+
+
+
+
