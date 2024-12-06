@@ -9,25 +9,38 @@ def get_file_data(file_name):
 file_data = get_file_data("Day4Input.txt")
 
 
-def check_right(letter):
-    if letter == "X":
-        if x != 10:
+def checking_xmas(pos):
+    xmas_count = 0
+    if pos == "X":
+        if x != 0 and x != 9:
             if grid[i][x + 1] == "M":
-                return True
-    if letter == "M":
-        if x != 10:
-            if grid[i][x + 1] == "A":
-                return True
-    if letter == "A":
-        if x != 10:
-            if grid[i][x + 1] == "S":
-                return True
-    return False
-
-
-def check_left(letter):
-
-
+                if x != 0:
+                    if grid[i][x + 1] == "A":
+                        if x != 0:
+                            if grid[i][x + 1] == "S":
+                                xmas_count += 1
+        if i != 9:
+            if grid[i - 1][x] == "M":
+                if i != 9:
+                    if grid[i - 1][x] == "A":
+                        if i != 9:
+                            if grid[i - 1][x] == "S":
+                                xmas_count += 1
+        if x != 0:
+            if grid[i][x - 1] == "M":
+                if x != 0:
+                    if grid[i][x - 1] == "A":
+                        if x != 0:
+                            if grid[i][x - 1] == "S":
+                                xmas_count += 1
+        if x != 9:
+            if grid[i][x+1] == "M":
+                if x!=9:
+                    if grid[i][x+1] == "A":
+                        if x!=9:
+                            if grid[i][x+1] =="S":
+                                xmas_count+=1
+        return xmas_count
 grid = []
 for line in file_data:
     row = []
@@ -37,6 +50,6 @@ for line in file_data:
 
 count = 0
 
-for i in range(len(grid)):
-    for x in range(len(grid[i])):
-        print(grid[i][x])
+for row in range(len(grid)):
+    for col in range(len(grid[row])):
+        checking_xmas(grid[row][col])
